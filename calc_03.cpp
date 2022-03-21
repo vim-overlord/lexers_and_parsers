@@ -14,7 +14,7 @@ public:
     double val;
     // for operators, parentheses, and newlines
     Token(char c) : type(c), val(0) {}
-    Token(char c, double d) : type(c), val(d) {}    // for numbers
+    Token(double d) : type(num), val(d) {}    // for numbers
 };
 
 class Tstream {
@@ -43,9 +43,9 @@ Token Tstream::get() {
     case '.': case '0': case '1': case '2': case '3': case '4': case '5':
     case '6': case '7': case '8': case '9': {
         cin.putback(c);
-        double val;
-        cin >> val;
-        return Token(num, val);
+        double d;
+        cin >> d;
+        return Token(d);
     }
     default:
         throw runtime_error("get: invalid token");
